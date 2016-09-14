@@ -1,10 +1,9 @@
 const request = require('request');
-const fs = require("fs");
-var download = require('./download.js')
+const getAvatarUrl = require('./getAvatarUrl.js');
 
 module.exports = {
-  get: function (repoOwner, repoName, fileName, endpoint) {
-    folder = './' + fileName + '/';
+  get: function (repoOwner, repoName, endpoint) {
+    folder = './avatars/';
 
     request.get({
       url: endpoint + '/repos/' + repoOwner + '/' + repoName + '/contributors',
@@ -14,36 +13,20 @@ module.exports = {
       json: true
     }, function (err, incomingMessage, responseBody) {
       var statuscode = incomingMessage.headers.status.split(' ')[0];
-      if (statuscode === 401) {
-        return console.error("Incorrect credentials in .env file")
-      }
+      console.log(statuscode);
 
-      else if (statuscode === 404) {
-        return console.error("Nonexisting owner/repo provided")
-      }
-
-      else {
-        if (err) {
-          return console.log(err);
-        }
-
-        fs.mkdir(folder,function(err) {
+      switch (statuscode) {
+        case '401':
+          console.log("Incorrect credentials in .env file");
+          break;
+        case '404':
+          console.log("Nonexisting owner/repo provided");
+          break;
+        default:
           if (err) {
-          return console.log('Directorty ' + fileName + ' already exists');
+            return console.log(err);
           }
-        });
-
-        responseBody.forEach(function(user) {
-          var avatarUrl = user.avatar_url;
-
-          request.get({
-            url: avatarUrl
-          }, function (err, response, body) {
-            type = response.headers["content-type"].split('/')[1];
-            var filePath = folder + user.id + '.' + type;
-            download.download(avatarUrl, filePath);
-          })
-        });
+          getAvatarUrl.get(responseBody);
       }
     })
   }
