@@ -3,8 +3,6 @@ const getAvatarUrl = require('./getAvatarUrl.js');
 
 module.exports = {
   get: function (repoOwner, repoName, endpoint) {
-    folder = './avatars/';
-
     request.get({
       url: endpoint + '/repos/' + repoOwner + '/' + repoName + '/contributors',
       headers: {

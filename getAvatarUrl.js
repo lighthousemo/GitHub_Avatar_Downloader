@@ -4,6 +4,7 @@ const download = require('./download.js')
 
 module.exports = {
   get: function(body){
+    const folder = './avatars/';
     fs.mkdir(folder,function(err) {
       if (err) {
       return console.log('Directorty already exists');
