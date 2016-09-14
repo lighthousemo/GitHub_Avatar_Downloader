@@ -1,23 +1,25 @@
 {
-  "name": "w2d3",
+  "name": "git_avatar_downloader",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "downloadAvatars.js",
+  "dependencies": {
+    "dotenv": "^2.0.0",
+    "fs": "0.0.1-security",
+    "request": "^2.74.0"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sammytam0430/w2d3.git"
+    "url": "git+https://github.com/sammytam0430/GitHub_Avatar_Downloader.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sammytam0430/w2d3/issues"
+    "url": "https://github.com/sammytam0430/GitHub_Avatar_Downloader/issues"
   },
-  "homepage": "https://github.com/sammytam0430/w2d3#readme",
-  "devDependencies": {
-    "ejs": "^2.5.2",
-    "http": "0.0.0"
-  }
+  "homepage": "https://github.com/sammytam0430/GitHub_Avatar_Downloader#readme"
 }
