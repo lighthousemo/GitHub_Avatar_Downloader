@@ -3,6 +3,8 @@ const fs = require("fs");
 const download = require('./download.js')
 
 module.exports = {
+  // Style: The function name get is too generic.
+  // Name the function by what it does.
   get: function(body){
     const folder = './avatars/';
     fs.mkdir(folder,function(err) {

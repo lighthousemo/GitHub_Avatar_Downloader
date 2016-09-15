@@ -2,6 +2,8 @@ const request = require('request');
 const getAvatarUrl = require('./getAvatarUrl.js');
 
 module.exports = {
+  // Style: The function could be renamed to something more expressive
+  // like getAvatarURLs
   get: function (repoOwner, repoName, endpoint) {
     request.get({
       url: endpoint + '/repos/' + repoOwner + '/' + repoName + '/contributors',
@@ -10,6 +12,9 @@ module.exports = {
       },
       json: true
     }, function (err, incomingMessage, responseBody) {
+      // Refactor: Looking at the docs it looks like you can get the status by doing
+      // incomingMessage.statusCode, which is easier.
+      // See: https://github.com/request/request
       var statuscode = incomingMessage.headers.status.split(' ')[0];
       console.log(statuscode);
 
